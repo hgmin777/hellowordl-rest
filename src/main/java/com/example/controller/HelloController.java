@@ -13,14 +13,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
+// 예제 참조 : https://easy-coding.tistory.com/2?category=717044
+
+
 @RestController
 @RequestMapping(value = "hello")
 public class HelloController {
+	
+	
+    // http://localhost:8080/hello
+	
     @GetMapping()
     public Hello get() {
         return new Hello(0, "Hello Spring Boot!");
     }
 
+
+    
+    // http://localhost:8080/hello/args?msg=m1&msg2=m2
+    
     @GetMapping("args")
     public Hello getArgs(
             @RequestParam(value = "msg")String msg,
@@ -30,6 +41,8 @@ public class HelloController {
 
         return hello;
     }
+    
+    // http://localhost:8080/hello/argsDefault?msg=m1    
 
     @GetMapping("argsDefault")
     public Hello getArgsDefault(
@@ -40,6 +53,9 @@ public class HelloController {
 
         return hello;
     }
+    
+    // Postman 활용
+    
 
     @PostMapping()
     public Hello post(@RequestBody Param param) {
@@ -48,6 +64,9 @@ public class HelloController {
         return hello;
     }
 
+    
+    // Postman 활용
+    
     @PutMapping()
     public Hello put(@RequestParam(value = "param1")String param1) {
         Hello hello = new Hello(0, "Put Request : " + param1);
